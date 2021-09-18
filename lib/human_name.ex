@@ -14,6 +14,9 @@ defmodule HumanName do
         iex> HumanName.first_initial("Dr. Alibaster Cornelius Juniper III")
         {:ok, "A"}
 
+        iex> HumanName.first_initial(12345)
+        {:error, "No valid name found"}
+
         iex> HumanName.first_initial("")
         {:error, "No valid name found"}
 
