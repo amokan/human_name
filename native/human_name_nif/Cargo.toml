@@ -1,0 +1,14 @@
+[package]
+name = "human_name_nif"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[lib]
+name = "human_name_nif"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = "0.22.0"
+human_name = "1.0.2"

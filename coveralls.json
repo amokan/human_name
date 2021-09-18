@@ -1,0 +1,5 @@
+{
+  "skip_files": [
+    "lib/human_name/native.ex"
+  ]
+}
