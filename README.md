@@ -1,6 +1,6 @@
 # HumanName
 
-Elixir bindings for the [https://crates.io/crates/human_name](human-name) crate implemented as a safe Rust NIF.
+Elixir bindings for the [human-name](https://crates.io/crates/human_name) crate implemented as a safe Rust NIF.
 
 ## Installation
 
