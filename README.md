@@ -11,7 +11,7 @@ This package can be installed by adding `human_name` to your list of dependencie
 ```elixir
 def deps do
   [
-    {:human_name, "~> 0.1.1"}
+    {:human_name, "~> 0.1.2"}
   ]
 end
 ```
