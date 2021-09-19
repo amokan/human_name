@@ -1,11 +1,9 @@
 defmodule HumanName.MixProject do
   use Mix.Project
 
-  @version "0.1.1"
+  @version "0.1.2"
   @description "Elixir bindings for the human-name crate implemented as a safe Rust NIF."
   @repo_url "https://github.com/amokan/human_name"
-
-  @files_to_package ~w(lib priv .formatter.exs mix.exs README* readme* LICENSE* license* CHANGELOG* changelog* src c_src Makefile* native)
 
   def project do
     [
@@ -71,7 +69,9 @@ defmodule HumanName.MixProject do
       licenses: ["MIT"],
       links: %{"GitHub" => @repo_url},
       maintainers: ["Adam Mokan"],
-      files: @files_to_package
+      files:
+        ~w(mix.exs lib README.* LICENSE* CHANGELOG* .formatter.exs native/**/Cargo.* native/**/src priv/.gitkeep),
+      exclude_patterns: ~w(*.so)
     }
   end
 end

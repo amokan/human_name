@@ -26,7 +26,8 @@ human_name-*.tar
 /tmp/
 
 # Rustler build arctifacts
-priv/native/*
+priv/native/*.so
+priv/native/target
 !priv/native/.gitkeep
 
 # elixir language server stuff
