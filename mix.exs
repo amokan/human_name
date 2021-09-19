@@ -70,7 +70,7 @@ defmodule HumanName.MixProject do
       links: %{"GitHub" => @repo_url},
       maintainers: ["Adam Mokan"],
       files:
-        ~w(mix.exs lib README.* LICENSE* CHANGELOG* .formatter.exs native/**/Cargo.* native/**/src priv/.gitkeep),
+        ~w(mix.exs lib README.* LICENSE* CHANGELOG* .formatter.exs native/**/Cargo.* native/**/src native/human_name_nif/.cargo/config priv/.gitkeep),
       exclude_patterns: ~w(*.so)
     }
   end

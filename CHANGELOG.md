@@ -2,7 +2,7 @@
 
 ## v0.1.2 (2021-09-18)
 
-* Move rust code to `./priv/native`
+* Fixed `mix.exs` file to include the rust source files and cargo config
 
 ## v0.1.1 (2021-09-18)
 
