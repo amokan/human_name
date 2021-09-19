@@ -57,7 +57,7 @@ defmodule HumanName.MixProject do
 
   defp rustler_crates() do
     [
-      noise: [
+      human_name_nif: [
         path: "native/human_name_nif",
         mode: :release
       ]
