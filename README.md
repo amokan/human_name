@@ -1,5 +1,8 @@
 # HumanName
 
+[![CI](https://github.com/amokan/human_name/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/amokan/human_name/actions/workflows/ci.yaml)
+[![Hex.pm](https://img.shields.io/hexpm/v/human_name.svg)](https://hex.pm/packages/human_name)
+
 Elixir bindings for the [human-name](https://crates.io/crates/human_name) crate implemented as a safe Rust NIF.
 
 ## Installation
