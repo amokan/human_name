@@ -4,6 +4,8 @@ Elixir bindings for the [human-name](https://crates.io/crates/human_name) crate 
 
 ## Installation
 
+_Be sure to [install Rust](https://www.rust-lang.org/tools/install)._
+
 This package can be installed by adding `human_name` to your list of dependencies in `mix.exs`:
 
 ```elixir
