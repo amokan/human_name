@@ -19,9 +19,6 @@ defmodule HumanName.MixProject do
       docs: docs(),
       package: package(),
 
-      # Hex
-      files: @files_to_package,
-
       # Coverage
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -73,7 +70,8 @@ defmodule HumanName.MixProject do
     %{
       licenses: ["MIT"],
       links: %{"GitHub" => @repo_url},
-      maintainers: ["Adam Mokan"]
+      maintainers: ["Adam Mokan"],
+      files: @files_to_package
     }
   end
 end
