@@ -11,6 +11,8 @@ jobs:
     env:
       MIX_ENV: test
 
+    name: Elixir ${{ matrix.pair.elixir }} / OTP ${{ matrix.pair.otp }}
+
     strategy:
       fail-fast: false
       matrix:
