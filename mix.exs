@@ -68,6 +68,9 @@ defmodule HumanName.MixProject do
         "README.md",
         "CHANGELOG.md",
         "LICENSE.txt"
+      ],
+      exclude_patterns: [
+        "native/human_name_nif/target/"
       ]
     }
   end
