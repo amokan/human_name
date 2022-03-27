@@ -8,8 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-18.04
-    env:
-      MIX_ENV: test
 
     name: Elixir ${{ matrix.pair.elixir }} / OTP ${{ matrix.pair.otp }}
 
@@ -40,11 +38,17 @@ jobs:
 
       - run: mix deps.unlock --check-unused
 
-      - run: HUMAN_NAME_BUILD=1 mix deps.compile
+      - run: mix deps.compile
+        env:
+          HUMAN_NAME_BUILD: 1
 
-      - run: HUMAN_NAME_BUILD=1 mix compile --warnings-as-errors
+      - run: mix compile --warnings-as-errors
+        env:
+          HUMAN_NAME_BUILD: 1
+          MIX_ENV: test
 
       - name: Run Tests
         run: HUMAN_NAME_BUILD=1 mix coveralls.github
         env:
+          MIX_ENV: test
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
