@@ -70,7 +70,7 @@ defmodule HumanName.MixProject do
         "LICENSE.txt"
       ],
       exclude_patterns: [
-        "native/human_name_nif/target/"
+        "native/human_name_nif/target"
       ]
     }
   end
