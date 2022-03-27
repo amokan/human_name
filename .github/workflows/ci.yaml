@@ -1,14 +1,15 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
+  push:
     branches: [main]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
+
+    name: Elixir ${{ matrix.pair.elixir }} / OTP ${{ matrix.pair.otp }}
 
     strategy:
       matrix:
@@ -24,25 +25,30 @@ jobs:
           otp-version: ${{ matrix.otp }}
           elixir-version: ${{ matrix.elixir }}
 
-      - name: Retrieve mix dependencies cache
-        uses: actions/cache@v1
-        id: mix-cache
+      - name: Install minimal stable Rust toolchain
+        uses: actions-rs/toolchain@v1
         with:
-          path: deps
-          key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+          profile: minimal
+          toolchain: stable
 
       - name: Install Dependencies
-        if: steps.mix-cache.outputs.cache-hit != 'true'
-        run: |
-          mix local.rebar --force
-          mix local.hex --force
-          mix deps.get
+        run: mix deps.get
 
-      - name: Check formatting
-        run: mix format --check-formatted
+      - run: mix format --check-formatted
+
+      - run: mix deps.unlock --check-unused
+
+      - run: mix deps.compile
+        env:
+          HUMAN_NAME_BUILD: 1
+
+      - run: mix compile --warnings-as-errors
+        env:
+          HUMAN_NAME_BUILD: 1
+          MIX_ENV: test
 
       - name: Run Tests
-        run: mix coveralls.github
+        run: HUMAN_NAME_BUILD=1 mix coveralls.github
         env:
           MIX_ENV: test
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

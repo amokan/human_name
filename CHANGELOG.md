@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.0 (2022-03-27)
+
+* Now [`rustler_precompiled`](https://hex.pm/packages/rustler_precompiled) as dependency.
+
 ## v0.1.2 (2021-09-18)
 
 * Fixed `mix.exs` file to include the rust source files and cargo config
