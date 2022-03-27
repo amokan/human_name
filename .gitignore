@@ -33,6 +33,9 @@ priv/native/target
 # elixir language server stuff
 .elixir_ls/
 
+# The checksum files for precompiled NIFs
+checksum-*.exs
+
 # Misc VSCode Stuff
 .vscode/
 

@@ -7,9 +7,8 @@ In order to release a new version to Hex.pm we first need to:
 3. commit and create a tag for that version
 4. push the changes to the repository with: `git push origin master --tags`
 5. wait the CI to build all release files
-6. run `mix rustler.download HumanName.Native --all --print`
-7. copy the output of the mix task and add to the release notes
-8. run `mix hex.publish` and **make sure the checksum file is present**
+6. run `mix rustler_precompiled.download HumanName.Native --all --print`
+7. run `mix hex.publish` and **make sure the checksum file is present**
 in the list of files to be published.
 
 It's important to ensure that we publish the checksum file with the
