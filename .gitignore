@@ -36,6 +36,8 @@ priv/native/target
 # The checksum files for precompiled NIFs
 checksum-*.exs
 
+/native/*/target
+
 # Misc VSCode Stuff
 .vscode/
 
