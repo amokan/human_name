@@ -14,13 +14,9 @@ jobs:
     name: Elixir ${{ matrix.pair.elixir }} / OTP ${{ matrix.pair.otp }}
 
     strategy:
-      fail-fast: false
       matrix:
-        include:
-          - pair:
-              elixir: 1.12.3
-              otp: 24.1.1
-            lint: lint
+        elixir: [1.12.3]
+        otp: [24.0.6]
 
     steps:
       - uses: actions/checkout@v2
@@ -41,15 +37,12 @@ jobs:
         run: mix deps.get
 
       - run: mix format --check-formatted
-        if: ${{ matrix.lint }}
 
       - run: mix deps.unlock --check-unused
-        if: ${{ matrix.lint }}
 
       - run: HUMAN_NAME_BUILD=1 mix deps.compile
 
       - run: HUMAN_NAME_BUILD=1 mix compile --warnings-as-errors
-        if: ${{ matrix.lint }}
 
       - name: Run Tests
         run: HUMAN_NAME_BUILD=1 mix coveralls.github
