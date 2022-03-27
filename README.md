@@ -8,16 +8,27 @@ Elixir bindings for the [human-name](https://crates.io/crates/human_name) crate 
 
 ## Installation
 
-_Be sure to [install Rust](https://www.rust-lang.org/tools/install)._
-
 This package can be installed by adding `human_name` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:human_name, "~> 0.1.2"}
+    {:human_name, "~> 0.2.0"}
   ]
 end
+```
+
+By default **you do not need Rust installed** because the lib will try to download a precompiled NIF file.
+
+In case you want to force compilation set the
+`HUMAN_NAME_BUILD` environment variable to `true` or `1`.
+
+To run tests locally, you could do a `HUMAN_NAME_BUILD=1 mix test`.
+
+Alternatively you can also set the application env `:build_from_source` to `true` in order to force the build:
+
+```elixir
+config :human_name, HumanName, build_from_source: true
 ```
 
 ## Usage
