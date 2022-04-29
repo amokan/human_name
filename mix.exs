@@ -1,7 +1,7 @@
 defmodule HumanName.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.2.1"
   @description "Elixir bindings for the human-name crate implemented as a safe Rust NIF."
   @repo_url "https://github.com/amokan/human_name"
 
@@ -36,8 +36,9 @@ defmodule HumanName.MixProject do
   defp deps do
     [
       {:excoveralls, "~> 0.10", only: :test},
-      {:ex_doc, ">= 0.23.0", only: [:dev, :docs], runtime: false},
-      {:rustler_precompiled, "~> 0.3.0"}
+      {:ex_doc, ">= 0.28.0", only: [:dev, :docs], runtime: false},
+      {:rustler, ">= 0.0.0", optional: true},
+      {:rustler_precompiled, "~> 0.4.1"}
     ]
   end
 

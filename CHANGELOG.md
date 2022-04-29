@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.1 (2022-04-29)
+
+* Updated `rustler_precompiled` and `ex_doc` dependencies.
+
 ## v0.2.0 (2022-03-27)
 
 * Now [`rustler_precompiled`](https://hex.pm/packages/rustler_precompiled) as dependency.
