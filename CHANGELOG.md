@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.2.1 (2022-04-29)
+## v0.2.2 (2022-04-29)
 
 * Updated `rustler_precompiled` and `ex_doc` dependencies.
 
