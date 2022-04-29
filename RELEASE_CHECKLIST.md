@@ -3,8 +3,8 @@
 In order to release a new version to Hex.pm we first need to:
 
 1. write the changes in the `CHANGELOG.md` file
-2. update the `README.md`, `CHANGELOG.md` and `mix.exs` with the new version
-3. commit and create a tag for that version
+2. update the `README.md`, `CHANGELOG.md`, `Cargo.toml`, and `mix.exs` with the new version
+3. commit and create a tag for that version, while remembering to use a `v` prefix
 4. push the changes to the repository with: `git push origin main --tags`
 5. wait the CI to build all release files
 6. run `mix rustler_precompiled.download HumanName.Native --all --print`
