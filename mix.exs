@@ -38,7 +38,7 @@ defmodule HumanName.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_doc, ">= 0.28.0", only: [:dev, :docs], runtime: false},
       {:rustler, ">= 0.0.0", optional: true},
-      {:rustler_precompiled, "~> 0.4.1"}
+      {:rustler_precompiled, "~> 0.5.1"}
     ]
   end
 
