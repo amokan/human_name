@@ -1,6 +1,6 @@
 [package]
 name = "human_name_nif"
-version = "0.2.3"
+version = "0.2.4"
 authors = []
 edition = "2018"
 
