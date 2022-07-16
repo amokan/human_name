@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.3 (2022-04-29)
+
+* Updated `human_name` crate to v1.2.1.
+
 ## v0.2.2 (2022-04-29)
 
 * Updated `rustler_precompiled` and `ex_doc` dependencies.

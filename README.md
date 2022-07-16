@@ -4,7 +4,9 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/human_name.svg)](https://hex.pm/packages/human_name)
 [![Coverage Status](https://coveralls.io/repos/github/amokan/human_name/badge.svg?branch=main)](https://coveralls.io/github/amokan/human_name?branch=main)
 
-Elixir bindings for the [human-name](https://crates.io/crates/human_name) crate implemented as a safe Rust NIF.
+Elixir wrapper for [David Judd's](https://github.com/djudd) excellent [human-name](https://crates.io/crates/human_name) crate implemented as a safe Rust NIF.
+
+The API implemented for use in Elixir/Erlang does not cover every aspect of the Rust library. Feel free to open a PR for contributions.
 
 ## Installation
 
@@ -13,7 +15,7 @@ This package can be installed by adding `human_name` to your list of dependencie
 ```elixir
 def deps do
   [
-    {:human_name, "~> 0.2.2"}
+    {:human_name, "~> 0.2.3"}
   ]
 end
 ```

@@ -1,4 +1,13 @@
 {
+  "coverage_options": {
+    "treat_no_relevant_lines_as_covered": true
+  },
+  "default_stop_words": [
+    "defmodule",
+    "defrecord",
+    "defimpl",
+    "def.+(.+\/\/.+).+do"
+  ],
   "skip_files": [
     "lib/human_name/native.ex"
   ]
