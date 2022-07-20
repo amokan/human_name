@@ -36,9 +36,9 @@ checksum = "2540771e65fc8cb83cd6e8a237f70c319bd5c29f78ed1084ba5d50eeac86f7f9"
 
 [[package]]
 name = "human_name"
-version = "1.2.1"
+version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b72eb03fa260b74e681c79e580fb995be24ad683b8a2d3e85e0035df118bb283"
+checksum = "e68696a54cbaffb02d125d78b8fe4a1aa3292ef663d075934459db45e8637a72"
 dependencies = [
  "libc",
  "phf",
@@ -47,6 +47,7 @@ dependencies = [
  "serde_json",
  "smallstr",
  "smallvec",
+ "unicode-case-mapping",
  "unicode-normalization",
  "unicode-segmentation",
  "unidecode",
@@ -318,6 +319,12 @@ name = "tinyvec_macros"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
+
+[[package]]
+name = "unicode-case-mapping"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cb6741768ec3ce6e75053f5b860be4822cc198e3ea2d2be773943a2478fb5fcb"
 
 [[package]]
 name = "unicode-normalization"
