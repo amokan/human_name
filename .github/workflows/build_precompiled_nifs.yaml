@@ -5,9 +5,10 @@ env:
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     tags:
-      - "*"
+      - v*
 
 defaults:
   run:
@@ -16,7 +17,8 @@ defaults:
     working-directory: "./native/human_name_nif"
 
 jobs:
-  build_release:
+  build_release_artifacts:
+    if: ${{ github.ref_type == 'tag' && github.event.base_ref=='refs/heads/main' }}
     name: NIF ${{ matrix.job.nif }} - ${{ matrix.job.target }} (${{ matrix.job.os }})
     runs-on: ${{ matrix.job.os }}
     strategy:

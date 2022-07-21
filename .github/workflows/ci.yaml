@@ -1,9 +1,20 @@
 name: CI
 
 on:
-  pull_request:
   push:
-    branches: [main]
+    branches:
+      - "main"
+    paths-ignore:
+      - "**/*.md"
+      - ".editorconfig"
+      - ".gitignore"
+  pull_request:
+    branches:
+      - "*"
+    paths-ignore:
+      - "**/*.md"
+      - ".editorconfig"
+      - ".gitignore"
 
 jobs:
   build:
@@ -14,7 +25,7 @@ jobs:
     strategy:
       matrix:
         elixir: [1.13.4]
-        otp: [25.0.2]
+        otp: [25]
 
     steps:
       - uses: actions/checkout@v2
