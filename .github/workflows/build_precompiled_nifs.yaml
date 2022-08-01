@@ -16,7 +16,6 @@ defaults:
 
 jobs:
   build_release_artifacts:
-    if: ${{ github.ref_type == 'tag' && github.event.base_ref=='refs/heads/main' }}
     name: NIF ${{ matrix.job.nif }} - ${{ matrix.job.target }} (${{ matrix.job.os }})
     runs-on: ${{ matrix.job.os }}
     strategy:
