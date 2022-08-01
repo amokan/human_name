@@ -1,7 +1,7 @@
 defmodule HumanName.MixProject do
   use Mix.Project
 
-  @version "0.2.5"
+  @version "0.2.6"
   @description "Elixir bindings for the human-name crate implemented as a safe Rust NIF."
   @repo_url "https://github.com/amokan/human_name"
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.6 (2022-08-01)
+
+* Updated `human_name` crate to v1.4.1.
+
 ## v0.2.5 (2022-07-21)
 
 * Updated `human_name` crate to v1.3.2.
