@@ -11,4 +11,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.25.0"
-human_name = "1.4.1"
+human_name = "2.0.1"
