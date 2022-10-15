@@ -1,6 +1,6 @@
 [package]
 name = "human_name_nif"
-version = "0.3.0"
+version = "0.4.0"
 authors = []
 edition = "2018"
 
@@ -10,5 +10,5 @@ path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-rustler = "0.25.0"
-human_name = "1.4.1"
+rustler = "0.26.0"
+human_name = "2.0.1"

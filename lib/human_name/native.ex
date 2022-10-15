@@ -1,8 +1,3 @@
-defmodule NifNotLoadedError do
-  @moduledoc false
-  defexception message: "nif not loaded"
-end
-
 defmodule HumanName.Native do
   @moduledoc false
   require Logger
@@ -11,7 +6,7 @@ defmodule HumanName.Native do
   version = mix_config[:version]
   github_url = mix_config[:package][:links]["GitHub"]
 
-  env_config = Application.get_env(:human_name, HumanName, [])
+  env_config = Application.compile_env(:human_name, HumanName, [])
 
   use RustlerPrecompiled,
     otp_app: :human_name,
@@ -44,6 +39,6 @@ defmodule HumanName.Native do
   def normalize_full(_full_name), do: err()
 
   defp err() do
-    throw(NifNotLoadedError)
+    :erlang.nif_error(:nif_not_loaded)
   end
 end

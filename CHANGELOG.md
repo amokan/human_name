@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.4.0 (2022-10-14)
+
+* Updated `human_name` crate to v2.0.1 and updated `rustler` crate.
+* Updated `rustler` and `rustler_precompiled` mix dependencies.
+* Changed `HumanName.Native` return to `:erlang.nif_error/1`.
+
 ## v0.3.0 (2022-08-01)
 
 * Updated `human_name` crate to v1.4.1.
