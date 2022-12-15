@@ -17,24 +17,19 @@ on:
       - ".gitignore"
 
 jobs:
-  build:
-    runs-on: ubuntu-18.04
-
-    name: Elixir ${{ matrix.pair.elixir }} / OTP ${{ matrix.pair.otp }}
-
-    strategy:
-      matrix:
-        elixir: [1.14]
-        otp: [25]
+  test:
+    name: Run Mix Tests
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      - name: Setup elixir
-        uses: erlef/setup-beam@v1
+      - name: Setup Elixir
+        uses: erlef/setup-elixir@v1
         with:
-          otp-version: ${{ matrix.otp }}
-          elixir-version: ${{ matrix.elixir }}
+          elixir-version: "1.14"
+          otp-version: "25"
 
       - name: Install minimal stable Rust toolchain
         uses: actions-rs/toolchain@v1
@@ -42,12 +37,31 @@ jobs:
           profile: minimal
           toolchain: stable
 
-      - name: Install Dependencies
-        run: mix deps.get
+      - name: Restore Mix Dependency Cache
+        id: cache-mix-deps
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./deps
+            ./_build
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
 
-      - run: mix format --check-formatted
+      - name: Install Mix Dependencies
+        if: steps.cache-mix-deps.outputs.cache-hit != 'true'
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.clean --all
+          mix deps.get
+          mix deps.compile
 
-      - run: mix deps.unlock --check-unused
+      - name: Check Formatting
+        run: mix format --check-formatted
+
+      - name: Check For Unused Dependencies
+        run: mix deps.unlock --check-unused
 
       - run: mix deps.compile
         env:
