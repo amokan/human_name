@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.4.2 (2023-02-17)
+
+* Dependency updates for `rustler`, `rustler_precompiled` and `excoveralls`.
+
 ## v0.4.1 (2022-12-15)
 
 * Minor dependency updates for `rustler_precompiled`, `ex_doc`, and `excoveralls`.
