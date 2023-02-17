@@ -1,10 +1,13 @@
 name: Build precompiled NIFs
 
-env:
-  NIF_DIRECTORY: "native/human_name_nif"
-
 on:
   push:
+    branches: -main
+    paths:
+      # Just run on main branch if "native" path changed. Tags will always run.
+      - "native/**"
+      # Also run in case there is any changes to this file.
+      - ".github/workflows/release.yml"
     tags:
       - "v*"
 
@@ -15,7 +18,7 @@ defaults:
     working-directory: "./native/human_name_nif"
 
 jobs:
-  build_release_artifacts:
+  build_release:
     name: NIF ${{ matrix.nif }} - ${{ matrix.job.target }} (${{ matrix.job.os }})
     runs-on: ${{ matrix.job.os }}
     strategy:
@@ -23,11 +26,7 @@ jobs:
       matrix:
         nif: ["2.16", "2.15"]
         job:
-          - {
-              target: arm-unknown-linux-gnueabihf,
-              os: ubuntu-20.04,
-              use-cross: true,
-            }
+          - { target: aarch64-apple-darwin, os: macos-11 }
           - {
               target: aarch64-unknown-linux-gnu,
               os: ubuntu-20.04,
@@ -38,27 +37,31 @@ jobs:
               os: ubuntu-20.04,
               use-cross: true,
             }
-          - { target: aarch64-apple-darwin, os: macos-11 }
+          - {
+              target: arm-unknown-linux-gnueabihf,
+              os: ubuntu-20.04,
+              use-cross: true,
+            }
           - {
               target: riscv64gc-unknown-linux-gnu,
               os: ubuntu-20.04,
               use-cross: true,
             }
           - { target: x86_64-apple-darwin, os: macos-11 }
+          - { target: x86_64-pc-windows-gnu, os: windows-2019 }
+          - { target: x86_64-pc-windows-msvc, os: windows-2019 }
           - { target: x86_64-unknown-linux-gnu, os: ubuntu-20.04 }
           - {
               target: x86_64-unknown-linux-musl,
               os: ubuntu-20.04,
               use-cross: true,
             }
-          - { target: x86_64-pc-windows-gnu, os: windows-2019 }
-          - { target: x86_64-pc-windows-msvc, os: windows-2019 }
 
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Extract project version
+      - name: Extract crate information
         shell: bash
         run: |
           # Get the project version from mix.exs
@@ -67,19 +70,7 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: stable
           target: ${{ matrix.job.target }}
-
-      - name: Show version information (Rust, cargo, GCC)
-        shell: bash
-        run: |
-          gcc --version || true
-          rustup -V
-          rustup toolchain list
-          rustup default
-          cargo -V
-          rustc -V
-          rustc --print=cfg
 
       - name: Build the project
         id: build-crate
