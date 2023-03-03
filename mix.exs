@@ -35,7 +35,7 @@ defmodule HumanName.MixProject do
 
   defp deps do
     [
-      {:excoveralls, "~> 0.15.3", only: :test},
+      {:excoveralls, "~> 0.16.0", only: :test},
       {:ex_doc, ">= 0.29.1", only: [:dev, :docs], runtime: false},
       {:rustler, ">= 0.0.0", optional: true},
       {:rustler_precompiled, "~> 0.6.1"}
