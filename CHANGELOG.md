@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.5.0 (2024-03-24)
+
+* Updated crates for `human_name` (_2.0.3_) and `rustler` (_0.29.1_).
+* Dependency updates for `ex_doc`, `excoveralls`, `rustler` and `rustler_precompiled`.
+
 ## v0.4.3 (2023-07-22)
 
 * Updated crates for `human_name` (_2.0.2_) and `rustler` (_0.29.1_).
