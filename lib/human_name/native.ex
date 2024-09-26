@@ -21,13 +21,20 @@ defmodule HumanName.Native do
   def first_initial(_full_name), do: err()
 
   @doc false
+  def consistent_with(_full_name_one, _full_name_two), do: err()
+
+  @doc false
   def first_initial_last(_full_name), do: err()
 
   @doc false
   def first_name(_full_name), do: err()
 
+  def middle_names(_full_name), do: err()
+
+  def middle_initials(_full_name), do: err()
+
   @doc false
-  def initials(_full_name), do: err()
+  def first_and_last_initials(_full_name), do: err()
 
   @doc false
   def last_name(_full_name), do: err()
