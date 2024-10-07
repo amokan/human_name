@@ -20,7 +20,7 @@ jobs:
       matrix:
         nif: ["2.16", "2.15"]
         job:
-          - { target: aarch64-apple-darwin, os: macos-11 }
+          - { target: aarch64-apple-darwin, os: macos-12 }
           - {
               target: aarch64-unknown-linux-gnu,
               os: ubuntu-20.04,
@@ -41,7 +41,7 @@ jobs:
               os: ubuntu-20.04,
               use-cross: true,
             }
-          - { target: x86_64-apple-darwin, os: macos-11 }
+          - { target: x86_64-apple-darwin, os: macos-12 }
           - { target: x86_64-pc-windows-gnu, os: windows-2019 }
           - { target: x86_64-pc-windows-msvc, os: windows-2019 }
           - { target: x86_64-unknown-linux-gnu, os: ubuntu-20.04 }
@@ -68,7 +68,7 @@ jobs:
 
       - name: Build the project
         id: build-crate
-        uses: philss/rustler-precompiled-action@v1.0.0
+        uses: philss/rustler-precompiled-action@v1.0.1
         with:
           project-name: human_name_nif
           project-version: ${{ env.PROJECT_VERSION }}

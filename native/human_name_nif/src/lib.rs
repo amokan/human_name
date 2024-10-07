@@ -215,18 +215,4 @@ fn normalize_full<'a>(env: Env<'a>, full_name: String) -> NifResult<Term<'a>> {
     Ok((atoms::ok(), parsed_name.unwrap().display_full().to_string()).encode(env))
 }
 
-rustler::init!(
-    "Elixir.HumanName.Native",
-    [
-        first_initial,
-        consistent_with,
-        first_initial_last,
-        first_name,
-        middle_name,
-        middle_initials,
-        first_and_last_initials,
-        last_name,
-        normalize,
-        normalize_full
-    ]
-);
+rustler::init!("Elixir.HumanName.Native");
