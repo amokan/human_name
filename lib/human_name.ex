@@ -28,6 +28,12 @@ defmodule HumanName do
 
   def first_initial(_), do: name_not_provided()
 
+  def consistent_with?(full_name_one, full_name_two) when is_binary(full_name_one) and full_name_one != ""
+      and is_binary(full_name_two) and full_name_two != "",
+    do: HumanName.Native.consistent_with(full_name_one, full_name_two)
+
+  def consistent_with?(_), do: name_not_provided()
+
   @doc """
   Returns the initial for the first (given) name and the full last name (surname).
 
@@ -66,6 +72,16 @@ defmodule HumanName do
 
   def first_name(_), do: name_not_provided()
 
+  def middle_names(full_name) when is_binary(full_name) and full_name != "",
+    do: HumanName.Native.middle_names(full_name)
+
+  def middle_names(_), do: name_not_provided()
+
+  def middle_initials(full_name) when is_binary(full_name) and full_name != "",
+    do: HumanName.Native.middle_initials(full_name)
+
+  def middle_initials(_), do: name_not_provided()
+
   @doc """
   Returns the combined initials for the first (given) name and last (surname) name.
 
@@ -80,10 +96,10 @@ defmodule HumanName do
         iex> HumanName.initials("")
         {:error, "No valid name found"}
   """
-  def initials(full_name) when is_binary(full_name) and full_name != "",
-    do: HumanName.Native.initials(full_name)
+  def first_and_last_initials(full_name) when is_binary(full_name) and full_name != "",
+    do: HumanName.Native.first_and_last_initials(full_name)
 
-  def initials(_), do: name_not_provided()
+  def first_and_last_initials(_), do: name_not_provided()
 
   @doc """
   Returns just the formatted last name (surname).
