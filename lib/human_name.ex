@@ -22,6 +22,9 @@ defmodule HumanName do
         iex> HumanName.consistent_with?("Dr. Alibaster Cornelius Juniper III", "Alibaster Juniper")
         {:ok, true}
 
+        iex> HumanName.consistent_with?("Jane Doe", "J. Doe")
+        {:ok, true}
+
         iex> HumanName.consistent_with?("Dr. Alibaster Cornelius Juniper III", "Jimmy H Jenkins")
         {:ok, false}
 
@@ -44,7 +47,29 @@ defmodule HumanName do
   def consistent_with?(_, _), do: names_not_provided()
 
   @doc """
-  Returns the initial for the first (given) name.
+  Returns the combined initials for the first name (given name) and last name (surname).
+
+  ## Example
+
+        iex> HumanName.first_and_last_initials("Jimmy H Jenkins")
+        {:ok, "JJ"}
+
+        iex> HumanName.first_and_last_initials("Dr. Alibaster Cornelius Juniper III")
+        {:ok, "AJ"}
+
+        iex> HumanName.first_and_last_initials("Jane Doe")
+        {:ok, "JD"}
+
+        iex> HumanName.first_and_last_initials("")
+        {:error, "No valid name found"}
+  """
+  def first_and_last_initials(full_name) when is_non_empty_binary(full_name),
+    do: HumanName.Native.first_and_last_initials(full_name)
+
+  def first_and_last_initials(_), do: name_not_provided()
+
+  @doc """
+  Returns the initial for the first name (given name).
 
   ## Example
 
@@ -53,6 +78,9 @@ defmodule HumanName do
 
         iex> HumanName.first_initial("Dr. Alibaster Cornelius Juniper III")
         {:ok, "A"}
+
+        iex> HumanName.first_initial("Jane Doe")
+        {:ok, "J"}
 
         iex> HumanName.first_initial(12345)
         {:error, "No valid name found"}
@@ -69,7 +97,7 @@ defmodule HumanName do
   def first_initial(_), do: name_not_provided()
 
   @doc """
-  Returns the initial for the first (given) name and the full last name (surname).
+  Returns the initial for the first name (given name) and the full last name (surname).
 
   ## Example
 
@@ -78,6 +106,9 @@ defmodule HumanName do
 
         iex> HumanName.first_initial_last("Dr. Alibaster Cornelius Juniper III")
         {:ok, "A. Juniper"}
+
+        iex> HumanName.first_initial_last("Jane Doe")
+        {:ok, "J. Doe"}
 
         iex> HumanName.first_initial_last("")
         {:error, "No valid name found"}
@@ -88,7 +119,7 @@ defmodule HumanName do
   def first_initial_last(_), do: name_not_provided()
 
   @doc """
-  Returns just the formatted first (given) name.
+  Returns just the formatted first name (given name).
 
   ## Example
 
@@ -98,6 +129,9 @@ defmodule HumanName do
         iex> HumanName.first_name("Dr. Alibaster Cornelius Juniper III")
         {:ok, "Alibaster"}
 
+        iex> HumanName.first_name("Jane Doe")
+        {:ok, "Jane"}
+
         iex> HumanName.first_name("")
         {:error, "No valid name found"}
   """
@@ -106,27 +140,13 @@ defmodule HumanName do
 
   def first_name(_), do: name_not_provided()
 
-  @doc """
-  Returns the inferred middle name for a provided full name.
-
-  ## Example
-
-        iex> HumanName.middle_name("Dr. Alibaster Cornelius Juniper III")
-        {:ok, "Cornelius"}
-
-        iex> HumanName.middle_name("Jimmy H Jenkins")
-        {:error, "No middle name found"}
-
-        iex> HumanName.middle_name("")
-        {:error, "No valid name found"}
-  """
-  def middle_name(full_name) when is_non_empty_binary(full_name),
-    do: HumanName.Native.middle_name(full_name)
-
-  def middle_name(_), do: name_not_provided()
+  @doc deprecated: "Use HumanName.first_and_last_initials/1 instead"
+  # coveralls-ignore-start
+  def initials(full_name), do: first_and_last_initials(full_name)
+  # coveralls-ignore-stop
 
   @doc """
-  Returns the middle initials for a provided full name.
+  Returns the middle initial(s) for a provided full name.
 
   ## Example
 
@@ -135,6 +155,9 @@ defmodule HumanName do
 
         iex> HumanName.middle_initials("Jimmy H Jenkins")
         {:ok, "H"}
+
+        iex> HumanName.middle_initials("Jane Dorothy Doe")
+        {:ok, "D"}
 
         iex> HumanName.middle_initials("Jimmy Jenkins")
         {:error, "No middle initials found"}
@@ -148,28 +171,48 @@ defmodule HumanName do
   def middle_initials(_), do: name_not_provided()
 
   @doc """
-  Returns the combined initials for the first (given) name and last (surname) name.
+  Returns the inferred middle name for a provided full name.
 
   ## Example
 
-        iex> HumanName.first_and_last_initials("Jimmy H Jenkins")
-        {:ok, "JJ"}
+        iex> HumanName.middle_name("Dr. Alibaster Cornelius Juniper III")
+        {:ok, "Cornelius"}
 
-        iex> HumanName.first_and_last_initials("Dr. Alibaster Cornelius Juniper III")
-        {:ok, "AJ"}
+        iex> HumanName.middle_name("Jane Dorothy Doe")
+        {:ok, "Dorothy"}
 
-        iex> HumanName.first_and_last_initials("")
+        iex> HumanName.middle_name("Jimmy H Jenkins")
+        {:error, "No middle name found"}
+
+        iex> HumanName.middle_name("")
         {:error, "No valid name found"}
   """
-  def first_and_last_initials(full_name) when is_non_empty_binary(full_name),
-    do: HumanName.Native.first_and_last_initials(full_name)
+  def middle_name(full_name) when is_non_empty_binary(full_name),
+    do: HumanName.Native.middle_name(full_name)
 
-  def first_and_last_initials(_), do: name_not_provided()
+  def middle_name(_), do: name_not_provided()
 
-  @doc deprecated: "Use HumanName.first_and_last_initials/1 instead"
-  # coveralls-ignore-start
-  def initials(full_name), do: first_and_last_initials(full_name)
-  # coveralls-ignore-stop
+  @doc """
+  Returns just the formatted last name (surname).
+
+  ## Example
+
+        iex> HumanName.last_initial("Jimmy H Jenkins")
+        {:ok, "J"}
+
+        iex> HumanName.last_initial("Dr. Alibaster Cornelius Juniper III")
+        {:ok, "J"}
+
+        iex> HumanName.last_initial("Jane Doe")
+        {:ok, "D"}
+
+        iex> HumanName.last_initial("")
+        {:error, "No valid name found"}
+  """
+  def last_initial(full_name) when is_non_empty_binary(full_name),
+    do: HumanName.Native.last_initial(full_name)
+
+  def last_initial(_), do: name_not_provided()
 
   @doc """
   Returns just the formatted last name (surname).
@@ -181,6 +224,9 @@ defmodule HumanName do
 
         iex> HumanName.last_name("Dr. Alibaster Cornelius Juniper III")
         {:ok, "Juniper"}
+
+        iex> HumanName.last_name("Jane Doe")
+        {:ok, "Doe"}
 
         iex> HumanName.last_name("")
         {:error, "No valid name found"}
@@ -222,6 +268,9 @@ defmodule HumanName do
 
         iex> HumanName.normalize_full("Dr. Alibaster Cornelius Juniper III")
         {:ok, "Alibaster Cornelius Juniper, III"}
+
+        iex> HumanName.normalize_full("fred mccalister  ")
+        {:ok, "Fred McCalister"}
 
         iex> HumanName.normalize_full("")
         {:error, "No valid name found"}

@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.6.0 (2024-10-07)
+
+* Updated crate for `rustler` (_0.34.0_).
+* Contributions from @lessless (_and @rogerbooth_):
+  * Added `HumanName.consistent_with?/2`.
+  * Added `HumanName.first_and_last_initials/1`.
+  * Added `HumanName.middle_name/1`.
+  * Added `HumanName.middle_initials/1`.
+* Added `HumanName.last_initial/1`.
+* Depreciation message added for `HumanName.initials/1`.
+* General cleanup and additions to the doc tests.
+* Dependency updates for `ex_doc`, `excoveralls`, `rustler` and `rustler_precompiled`.
+
 ## v0.5.0 (2024-03-24)
 
 * Updated crates for `human_name` (_2.0.3_) and `rustler` (_0.29.1_).

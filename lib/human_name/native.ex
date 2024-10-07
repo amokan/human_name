@@ -18,10 +18,13 @@ defmodule HumanName.Native do
     version: version
 
   @doc false
-  def first_initial(_full_name), do: err()
+  def consistent_with(_full_name_one, _full_name_two), do: err()
 
   @doc false
-  def consistent_with(_full_name_one, _full_name_two), do: err()
+  def first_and_last_initials(_full_name), do: err()
+
+  @doc false
+  def first_initial(_full_name), do: err()
 
   @doc false
   def first_initial_last(_full_name), do: err()
@@ -30,16 +33,16 @@ defmodule HumanName.Native do
   def first_name(_full_name), do: err()
 
   @doc false
+  def last_initial(_full_name), do: err()
+
+  @doc false
+  def last_name(_full_name), do: err()
+
+  @doc false
   def middle_name(_full_name), do: err()
 
   @doc false
   def middle_initials(_full_name), do: err()
-
-  @doc false
-  def first_and_last_initials(_full_name), do: err()
-
-  @doc false
-  def last_name(_full_name), do: err()
 
   @doc false
   def normalize(_full_name), do: err()
@@ -47,7 +50,5 @@ defmodule HumanName.Native do
   @doc false
   def normalize_full(_full_name), do: err()
 
-  defp err() do
-    :erlang.nif_error(:nif_not_loaded)
-  end
+  defp err(), do: :erlang.nif_error(:nif_not_loaded)
 end

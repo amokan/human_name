@@ -8,24 +8,6 @@ mod atoms {
 }
 
 #[rustler::nif]
-fn first_initial<'a>(env: Env<'a>, full_name: String) -> NifResult<Term<'a>> {
-    if full_name.is_empty() {
-        return Ok((atoms::error(), "No valid name found").encode(env));
-    }
-
-    let parsed_name = Name::parse(&full_name);
-    if parsed_name.is_none() {
-        return Ok((atoms::error(), "No valid name found").encode(env));
-    }
-
-    Ok((
-        atoms::ok(),
-        parsed_name.unwrap().first_initial().to_string(),
-    )
-        .encode(env))
-}
-
-#[rustler::nif]
 fn consistent_with<'a>(env: Env<'a>, full_name_one: String, full_name_two: String) -> NifResult<Term<'a>> {
     if full_name_one.is_empty() {
         return Ok((atoms::error(), "No valid full_name_one found").encode(env));
@@ -50,6 +32,24 @@ fn consistent_with<'a>(env: Env<'a>, full_name_one: String, full_name_two: Strin
     Ok((
         atoms::ok(),
         result,
+    )
+        .encode(env))
+}
+
+#[rustler::nif]
+fn first_initial<'a>(env: Env<'a>, full_name: String) -> NifResult<Term<'a>> {
+    if full_name.is_empty() {
+        return Ok((atoms::error(), "No valid name found").encode(env));
+    }
+
+    let parsed_name = Name::parse(&full_name);
+    if parsed_name.is_none() {
+        return Ok((atoms::error(), "No valid name found").encode(env));
+    }
+
+    Ok((
+        atoms::ok(),
+        parsed_name.unwrap().first_initial().to_string(),
     )
         .encode(env))
 }
@@ -165,6 +165,27 @@ fn first_and_last_initials<'a>(env: Env<'a>, full_name: String) -> NifResult<Ter
     Ok((
         atoms::ok(),
         format!("{}{}", f_initial, l_initial).to_string(),
+    )
+        .encode(env))
+}
+
+#[rustler::nif]
+fn last_initial<'a>(env: Env<'a>, full_name: String) -> NifResult<Term<'a>> {
+    if full_name.is_empty() {
+        return Ok((atoms::error(), "No valid name found").encode(env));
+    }
+
+    let parsed_name = Name::parse(&full_name);
+    if parsed_name.is_none() {
+        return Ok((atoms::error(), "No valid name found").encode(env));
+    }
+
+    let parsed = parsed_name.unwrap();
+    let l_initial = parsed.surname().chars().nth(0).unwrap();
+
+    Ok((
+        atoms::ok(),
+        format!("{}", l_initial).to_string(),
     )
         .encode(env))
 }

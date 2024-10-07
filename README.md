@@ -15,7 +15,7 @@ This package can be installed by adding `human_name` to your list of dependencie
 ```elixir
 def deps do
   [
-    {:human_name, "~> 0.5.0"}
+    {:human_name, "~> 0.6.0"}
   ]
 end
 ```
@@ -36,14 +36,29 @@ config :human_name, HumanName, build_from_source: true
 ## Usage
 
 ```elixir
-iex> HumanName.first_name("Dr. Alibaster Cornelius Juniper III")
-{:ok, "Alibaster"}
+iex> HumanName.consistent_with?("Jimmy H Jenkins", "Jim Jenkins")
+{:ok, true}
 
 iex> HumanName.first_and_last_initials("Dr. Alibaster Cornelius Juniper III")
 {:ok, "AJ"}
 
+iex> HumanName.first_initial("Dr. Alibaster Cornelius Juniper III")
+{:ok, "A"}
+
+iex> HumanName.first_initial_last("Jimmy H Jenkins")
+{:ok, "J. Jenkins"}
+
+iex> HumanName.first_name("Dr. Alibaster Cornelius Juniper III")
+{:ok, "Alibaster"}
+
 iex> HumanName.middle_initials("Dr. Alibaster Cornelius Juniper III")
 {:ok, "C"}
+
+iex> HumanName.middle_name("Dr. Alibaster Cornelius Juniper III")
+{:ok, "Cornelius"}
+
+iex> HumanName.last_initial("Jimmy H Jenkins")
+{:ok, "J"}
 
 iex> HumanName.last_name("Dr. Alibaster Cornelius Juniper III")
 {:ok, "Juniper"}
