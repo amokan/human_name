@@ -98,7 +98,7 @@ fn first_name<'a>(env: Env<'a>, full_name: String) -> NifResult<Term<'a>> {
 }
 
 #[rustler::nif]
-fn middle_names<'a>(env: Env<'a>, full_name: String) -> NifResult<Term<'a>> {
+fn middle_name<'a>(env: Env<'a>, full_name: String) -> NifResult<Term<'a>> {
     if full_name.is_empty() {
         return Ok((atoms::error(), "No valid name found").encode(env));
     }
@@ -222,7 +222,7 @@ rustler::init!(
         consistent_with,
         first_initial_last,
         first_name,
-        middle_names,
+        middle_name,
         middle_initials,
         first_and_last_initials,
         last_name,

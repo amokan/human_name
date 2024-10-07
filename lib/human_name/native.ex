@@ -29,8 +29,10 @@ defmodule HumanName.Native do
   @doc false
   def first_name(_full_name), do: err()
 
-  def middle_names(_full_name), do: err()
+  @doc false
+  def middle_name(_full_name), do: err()
 
+  @doc false
   def middle_initials(_full_name), do: err()
 
   @doc false

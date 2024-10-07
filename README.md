@@ -39,8 +39,11 @@ config :human_name, HumanName, build_from_source: true
 iex> HumanName.first_name("Dr. Alibaster Cornelius Juniper III")
 {:ok, "Alibaster"}
 
-iex> HumanName.initials("Dr. Alibaster Cornelius Juniper III")
+iex> HumanName.first_and_last_initials("Dr. Alibaster Cornelius Juniper III")
 {:ok, "AJ"}
+
+iex> HumanName.middle_initials("Dr. Alibaster Cornelius Juniper III")
+{:ok, "C"}
 
 iex> HumanName.last_name("Dr. Alibaster Cornelius Juniper III")
 {:ok, "Juniper"}
