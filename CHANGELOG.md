@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.6.1 (2024-10-13)
+
+* Updated crate for `human_name` (_2.0.4_)
+
 ## v0.6.0 (2024-10-07)
 
 * Updated crate for `rustler` (_0.34.0_).

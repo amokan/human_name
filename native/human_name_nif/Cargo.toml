@@ -1,6 +1,6 @@
 [package]
 name = "human_name_nif"
-version = "0.6.0"
+version = "0.6.1"
 authors = []
 edition = "2018"
 
@@ -11,4 +11,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.34.0"
-human_name = "2.0.3"
+human_name = "2.0.4"
