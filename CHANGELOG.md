@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.6.2 (2025-04-09)
+
+* Updates to Rust crates (_`rustler` and dependencies_)
+* Updates to Elixir deps
+
 ## v0.6.1 (2024-10-13)
 
 * Updated crate for `human_name` (_2.0.4_)

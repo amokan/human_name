@@ -28,8 +28,8 @@ jobs:
       - name: Setup Elixir
         uses: erlef/setup-elixir@v1
         with:
-          elixir-version: "1.14"
-          otp-version: "25"
+          elixir-version: "1.18"
+          otp-version: "27.x"
 
       - name: Install minimal stable Rust toolchain
         uses: actions-rs/toolchain@v1
